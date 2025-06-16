@@ -82,12 +82,13 @@ DeviceProcessEvents
 
 Searched for any indication the TOR browser was used to establish a connection using any of the known TOR ports. There were three main instances where the user established connections.
 
-1. At `2025-06-15T19:16:08.062338Z`, the user `ylavnu` on the `win-vm-mde` device successfully established a connection to the remote IP address `193.105.134.150` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`.
+1. At `2025-06-15T19:16:08.062338Z`, the user `ylavnu` on the `win-vm-mde` device successfully established a connection to the remote IP address `193.105.134.150` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\ylavnu\desktop\tor browser\browser\torbrowser\tor\tor.exe`.
    
-2. At `2025-06-15T19:16:11.6181618Z`, the user `ylavnu` on the `win-vm-mde` device successfully established a connection to the remote IP address `81.17.28.117` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`.
+2. At `2025-06-15T19:16:11.6181618Z`, the user `ylavnu` on the `win-vm-mde` device successfully established a connection to the remote IP address `81.17.28.117` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\ylavnu\desktop\tor browser\browser\torbrowser\tor\tor.exe`.
    
-3. At `2025-06-15T19:16:20.2701989Z`, the user `ylavnu` on the `win-vm-mde` device successfully established a connection to the remote IP address `193.11.164.243` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`.
+3. At `2025-06-15T19:16:20.2701989Z`, the user `ylavnu` on the `win-vm-mde` device successfully established a connection to the remote IP address `193.11.164.243` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\ylavnu\desktop\tor browser\browser\torbrowser\tor\tor.exe`.
 
+There were also a couple of connections to sites on port `443`.
 
 
 **Query used to locate events:**
@@ -100,7 +101,7 @@ DeviceNetworkEvents
 | where RemotePort in ("9001", "9030", "9040", "9050", "9051", "9150")  
 | project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessFileName, InitiatingProcessFolderPath
 ```
-![image](https://github.com/user-attachments/assets/f8d7b872-7661-4a7c-9cfa-ea7f4591fe5d)
+![image](https://github.com/user-attachments/assets/3dfac02d-7e92-48c4-a985-ca518c1e9458)
 
 ---
 
@@ -108,59 +109,60 @@ DeviceNetworkEvents
 
 ### 1. File Download - TOR Installer
 
-- **Timestamp:** `2024-11-08T22:14:48.6065231Z`
-- **Event:** The user "employee" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
+- **Timestamp:** `2025-06-15T19:06:56.4633679Z`
+- **Event:** The user `ylavnu`downloaded a file named `tor-browser-windows-x86_64-portable-14.5.3.exe` to the Downloads folder.
 - **Action:** File download detected.
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\ylavnu\Downloads\tor-browser-windows-x86_64-portable-14.5.3.exe`
 
 ### 2. Process Execution - TOR Browser Installation
 
-- **Timestamp:** `2024-11-08T22:16:47.4484567Z`
-- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
+- **Timestamp:** `2025-06-15T19:15:04.2299353Z`
+- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.5.3.exe` in silent mode, initiating a background installation of the TOR Browser.
 - **Action:** Process creation detected.
-- **Command:** `tor-browser-windows-x86_64-portable-14.0.1.exe /S`
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **Command:** `tor-browser-windows-x86_64-portable-14.5.3.exe /S`
+- **File Path:** `C:\Users\ylavnu\Downloads\tor-browser-windows-x86_64-portable-14.5.3.exe`
 
 ### 3. Process Execution - TOR Browser Launch
 
-- **Timestamp:** `2024-11-08T22:17:21.6357935Z`
-- **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
+- **Timestamp:** `2025-06-15T19:15:50.6163583Z`
+- **Event:** User `ylavnu` opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
 - **Action:** Process creation of TOR browser-related executables detected.
-- **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
+- **File Path:** `C:\Users\ylavnu\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
 
 ### 4. Network Connection - TOR Network
 
 - **Timestamp:** `2024-11-08T22:18:01.1246358Z`
-- **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
+- **Event:** Three network connections were established using `tor.exe` by the user `ylavnu`. At `2025-06-15T19:16:08.062338Z`, the `win-vm-mde` device successfully established a connection to the remote IP address `193.105.134.150` on port `9001`. At `2025-06-15T19:16:11.6181618Z`, the `win-vm-mde` device successfully established a connection to the remote IP address `81.17.28.117` on port `9001`. At `2025-06-15T19:16:20.2701989Z`, the `win-vm-mde` device successfully established a connection to the remote IP address `193.11.164.243` on port `9001`. These events confirm TOR browser network activity.
 - **Action:** Connection success.
 - **Process:** `tor.exe`
-- **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
+- **File Path:** `c:\users\ylavnu\desktop\tor browser\browser\torbrowser\tor\tor.exe`
 
 ### 5. Additional Network Connections - TOR Browser Activity
 
 - **Timestamps:**
-  - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
-  - `2024-11-08T22:18:16Z` - Local connection to `127.0.0.1` on port `9150`.
-- **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
+  - `2025-06-15T19:16:10.3569535Z` - Connected to `200.122.181.2` on port `443`.
+  - `2025-06-15T19:16:11.6106377Z` - Connected to `185.107.57.66` on port `443`.
+  - `2025-06-15T19:16:23.1127259Z` - Local connection to `127.0.0.1` on port `9150`.
+- **Event:** Additional TOR network connections were established, indicating ongoing activity by user `ylavnu` through the TOR browser.
 - **Action:** Multiple successful connections detected.
 
 ### 6. File Creation - TOR Shopping List
 
-- **Timestamp:** `2024-11-08T22:27:19.7259964Z`
-- **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
+- **Timestamp:** `2025-06-15T19:26:08.4779492Z`
+- **Event:** The user `ylavnu` created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
 - **Action:** File creation detected.
-- **File Path:** `C:\Users\employee\Desktop\tor-shopping-list.txt`
+- **File Path:** `C:\Users\ylavnu\Desktop\tor-shopping-list.txt`
 
 ---
 
 ## Summary
 
-The user "employee" on the "threat-hunt-lab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the "shopping list" file.
+The user `ylavnu` on the `win-vm-mde` device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the `shopping list` file.
 
 ---
 
 ## Response Taken
 
-TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `employee`. The device was isolated, and the user's direct manager was notified.
+TOR usage was confirmed on the endpoint `win-vm-mde` by the user `ylavnu`. The device was isolated, and the user's direct manager was notified.
 
 ---
